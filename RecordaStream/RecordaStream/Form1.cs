@@ -51,5 +51,43 @@ namespace RecordaStream
         {
             wi.StopRecording();
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Created by: Gerald McAlister and Jesse Harrison", "About");
+        }
+
+        private void stopCameraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (cameraControl1.isRunning)
+            {
+                cameraControl1.Stop();
+                stopCameraToolStripMenuItem.Text = "Start Camera";
+            }
+            else if (!cameraControl1.isRunning)
+            {
+                cameraControl1.Start(0, false);
+                stopCameraToolStripMenuItem.Text = "Stop Camera";
+            }
+        }
+
+        private void stopAudioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (wo.PlaybackState == PlaybackState.Playing)
+            {
+                wo.Stop();
+                stopAudioToolStripMenuItem.Text = "Start Audio";
+            }
+            else if (wo.PlaybackState == PlaybackState.Stopped)
+            {
+                wo.Play();
+                stopAudioToolStripMenuItem.Text = "Stop Audio";
+            }
+        }
     }
 }

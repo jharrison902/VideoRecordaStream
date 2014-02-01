@@ -26,6 +26,8 @@ namespace Camera
         private ulong m_FrameNumber = 0;
         public int device_number = 0;
 
+        private bool running = false;
+
         // global variables to make the video capture go faster
         private Camera.CameraArgs x = new Camera.CameraArgs();
         private IDataObject tempObj;
@@ -195,6 +197,14 @@ namespace Camera
             { m_FrameNumber = value; }
         }
 
+        public bool isRunning
+        {
+            get
+            {
+                return running;
+            }
+        }
+
         #endregion
 
         #region Start and Stop Capture Functions
@@ -241,6 +251,7 @@ namespace Camera
                 this.timer1.Interval = m_TimeToCapture_milliseconds;
                 bStopped = false;
                 this.timer1.Start();
+                running = true;
             }
 
             catch (Exception excep)
@@ -264,6 +275,7 @@ namespace Camera
                 // disconnect from the video source
                 Application.DoEvents();
                 SendMessage(mCapHwnd, WM_CAP_DISCONNECT, device_number, 0);
+                running = false;
             }
 
             catch (Exception excep)
