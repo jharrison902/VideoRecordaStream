@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "VideoRecordaStream.h"
+#include "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include\DShow.h"
 
 #define MAX_LOADSTRING 100
 
